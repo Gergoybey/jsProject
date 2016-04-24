@@ -48,6 +48,18 @@
             return count;
         };
         
+		var probs = function(text){
+			var probs = [];
+			for(var i = 0; i<text.length; i++) {
+				if (probs[text[i]] === undefined){
+					var c = count(text[i],text);
+					var prob = c / text.length;
+					probs[text[i]] = prob;
+				}
+			}
+			return probs;
+		};
+		
         $.fn.validateEntropy = function (options) {
             return this.each(function() {
                 var settings = $.extend({
@@ -61,12 +73,14 @@
                     var text = $input.val();
                     
                     var entropy = 0;
-                    
-                    for(var i = 0; i<text.length; i++) {
-                        var prob = count(text[i],text) / text.length;
-                        entropy -= prob * Math.log2(prob);
-                    }
-                    return (entropy > threshold);
+					
+					var p = probs(text);
+					for (var i in p) {
+                        entropy -= p[i] * Math.log2(p[i]);
+					}
+					
+					console.log("entropy=" + entropy);
+                    return (entropy >= threshold);
                 });
             });
         };
@@ -117,26 +131,5 @@
             return $(this).validate({pattern : "^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$"});
         };
 
-	$.fn.inputText = function(options) {
-		
-		return this.each(function() {
-			var settings = $.extend({
-				text : "Podaj wartość"
-			}, options);
-
-			var defaultText = settings.text;
-			$(this).val(defaultText);
-			$(this).focus(function() {
-				if ($(this).val() === defaultText) {
-					$(this).val("");
-				}
-			});
-			$(this).blur(function() {
-				if ($(this).val() === "") {
-					$(this).val(defaultText);
-				}
-			});
-		});
-	};
 
 })(jQuery);
