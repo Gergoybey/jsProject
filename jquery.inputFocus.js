@@ -2,7 +2,8 @@
 
 		
 		$.get("kody.csv", function(response) {
-			console.log(response);
+			//console.log(response);
+			console.log(response.split("\n")[600].split(";")[2]);
 		});
 
         var check = function (toCheck,submitButton) {
