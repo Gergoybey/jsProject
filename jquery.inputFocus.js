@@ -66,6 +66,24 @@
 			return probs;
 		};
 		
+		
+		
+        $.fn.postCode = function (cityField) {
+            return this.each(function() {
+                
+				console.log("OK");
+				var reg = new RegExp("00-000");
+				$th = $(this);
+				$th.blur(function() { 
+					console.log("OK");   
+					if (reg.test($th.val())){
+						console.log("OK2");
+					}
+                });
+            });
+        };
+		
+		
         $.fn.validateEntropy = function (options) {
             return this.each(function() {
                 var settings = $.extend({

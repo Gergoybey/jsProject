@@ -7,6 +7,7 @@ $(document).ready(function (){
 		$('#pass').validatePass();
 		$('#email').validateEmail();
 		$('#entropy').validateEntropy({threshold : 2}).animate().hide('slow').show('slow');
+		$('#post').postCode($('#city'));
 	
         //$(':text').validate({pattern : '^[1-9][0-9]*'});
     
