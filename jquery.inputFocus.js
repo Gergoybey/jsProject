@@ -1,5 +1,10 @@
 (function($) {
 
+		
+		$.get("kody.csv", function(response) {
+			console.log(response);
+		});
+
         var check = function (toCheck,submitButton) {
             var valid = true;
             for (var i = 0, len = toCheck.length; i < len; i++) {
