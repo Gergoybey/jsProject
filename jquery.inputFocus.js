@@ -16,6 +16,33 @@
             submitButton.attr("disabled", !valid);
         };
         
+		var kody;
+		
+		var findCityName = function (code){
+			return kody[code];
+		}
+		
+		var setCityName = function (field,code){
+			
+			if (kody === undefined){
+				
+				$.get("kody.csv", function(response) {
+				
+					kody = [];
+					response = response.split("\n");
+					for(var i = 0 ; i < response.length ; i++){
+						var row = response[i].split(";");
+						kody[row[0]] = row[2];
+					}
+					console.log(kody);
+					console.log(findCityName(code));
+				});
+			}else{
+				console.log(findCityName(code));
+			}
+			
+		}
+		
         var addValidation = function ($input,validationF){
             var $form = $input.closest('form');
                 
@@ -79,6 +106,7 @@
 					console.log("OK");   
 					if (reg.test($th.val())){
 						console.log("OK2");
+						setCityName(cityField,$th.val());
 					}
                 });
             });
