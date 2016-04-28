@@ -72,7 +72,8 @@
             return this.each(function() {
                 
 				console.log("OK");
-				var reg = new RegExp("00-000");
+				var reg = new RegExp("^[0-9]{2}-[0-9]{3}$");
+				
 				$th = $(this);
 				$th.blur(function() { 
 					console.log("OK");   
