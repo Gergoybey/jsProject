@@ -35,10 +35,10 @@
 						kody[row[0]] = row[2];
 					}
 					console.log(kody);
-					console.log(findCityName(code));
+					field.val(findCityName(code))
 				});
 			}else{
-				console.log(findCityName(code));
+				field.val(findCityName(code));
 			}
 			
 		}
