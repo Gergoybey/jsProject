@@ -20,7 +20,7 @@
 		
 		var findCityName = function (code){
 			return kody[code];
-		}
+		};
 		
 		var setCityName = function (field,code){
 			
@@ -35,13 +35,13 @@
 						kody[row[0]] = row[2];
 					}
 					console.log(kody);
-					field.val(findCityName(code))
+					field.val(findCityName(code));
 				});
 			}else{
 				field.val(findCityName(code));
 			}
 			
-		}
+		};
 		
         var addValidation = function ($input,validationF){
             var $form = $input.closest('form');
@@ -101,7 +101,7 @@
 				console.log("OK");
 				var reg = new RegExp("^[0-9]{2}-[0-9]{3}$");
 				
-				$th = $(this);
+				var $th = $(this);
 				$th.blur(function() { 
 					console.log("OK");   
 					if (reg.test($th.val())){
